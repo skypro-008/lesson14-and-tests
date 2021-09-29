@@ -7,7 +7,7 @@ from io import StringIO
 
 student = student_solution
 author = author_solution
-
+from main import sqlite_query
 
 class Capturing(list):
     def __enter__(self):
