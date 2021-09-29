@@ -1,7 +1,7 @@
 import sqlite3
 from tools import task_preparing
 
-@task_preparing(limit=20)  # Лимит количества выводимых строкimport sqlite3
+@task_preparing(limit=20)  # Лимит количества выводимых строк
 def main():
     sqlite_query = ("ЗДЕСЬ ДОЛЖЕН БЫТЬ ВАШ ЗАПРОС")
     return sqlite_query
