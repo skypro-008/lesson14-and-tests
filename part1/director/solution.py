@@ -1,16 +1,11 @@
-import sqlite3
+from tools import task_preparing
 
 
+@task_preparing(limit=20)  # Лимит количества выводимых строк
 def main():
-    con = sqlite3.connect("../netflix.db")
-    cur = con.cursor()
     sqlite_query = ("SELECT DISTINCT director "
-                    "FROM netflix "
-                    "WHERE director IS NOT NULL")
-    cur.execute(sqlite_query)
-    for row in cur.fetchall():
-        print(row[0])
-    con.close()
+                    "FROM netflix ")
+    return sqlite_query
 
 
 if __name__ == '__main__':

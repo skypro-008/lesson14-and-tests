@@ -1,14 +1,10 @@
 import sqlite3
+from tools import task_preparing
 
-
+@task_preparing(limit=20)  # Лимит количества выводимых строк
 def main():
-    con = sqlite3.connect("../netflix.db")
-    cur = con.cursor()
-    sqlite_query = "ЗДЕСЬ ДОЛЖЕН БЫТЬ ВАШ ЗАПРОС"
-    cur.execute(sqlite_query)
-    # здесь должно быть формирование и вывод списка
-    # print(cur.fetchall())
-    con.close()
+    sqlite_query = ("ЗДЕСЬ ДОЛЖЕН БЫТЬ ВАШ ЗАПРОС ")
+    return sqlite_query
 
 
 if __name__ == '__main__':

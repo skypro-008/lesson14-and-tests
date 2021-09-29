@@ -1,15 +1,14 @@
-import sqlite3
+from tools import task_preparing
 
 
+@task_preparing(limit=20)  # Лимит количества выводимых строк
 def main():
-    con = sqlite3.connect("../netflix.db")
-    cur = con.cursor()
-    sqlite_query = "ЗДЕСЬ ДОЛЖЕН БЫТЬ ВАШ ЗАПРОС"
-    cur.execute(sqlite_query)
-    # здесь должно быть формирование и вывод списка
-    # print(cur.fetchall())
-    con.close()
+    sqlite_query = ("SELECT title, release_year FROM netflix "
+                    "WHERE release_year BETWEEN 1943 AND 1945 "
+                    "AND type='Movie'")
+    return sqlite_query
 
 
 if __name__ == '__main__':
     main()
+

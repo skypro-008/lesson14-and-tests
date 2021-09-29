@@ -5,7 +5,7 @@ def main():
     con = sqlite3.connect("../netflix.db")
     cur = con.cursor()
     sqlite_query = ("SELECT title, rating FROM netflix "
-                    "WHERE [cast] LIKE 'Joaquin Phoenix%'"
+                    "WHERE [cast] LIKE '%Joaquin Phoenix%'"
                     "AND type='Movie'")
     cur.execute(sqlite_query)
     for row in cur.fetchall():

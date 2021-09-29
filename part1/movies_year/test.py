@@ -26,19 +26,21 @@ class TrainTestCase(unittest.TestCase):
             student_func = student.main()
         with Capturing() as capt:
             author_func = author.main()
+
         self.student_structure = student_func.get('structure')
         self.author_structure = author_func.get('structure')
-        self.student_rows_numbers = student_func.get('number_of_rows')
-        self.author_rows_numbers = author_func.get('number_of_rows')
+        self.student_rows_numbers = student_func.get('rows_numbers')
+        self.author_rows_numbers = author_func.get('rows_numbers')
         self.student_result = student_func.get('query_result')
         self.author_result = author_func.get('query_result')
         self.student_keywords = student_func.get('keywords')
         self.author_keywords = author_func.get('keywords')
 
     def test_query_structure_has_like_operator(self):
+        breakpoint()
         self.assertIn('like', self.student_keywords,
                      ('Проверьте, что воспользовались оператором like'
-                      'при поиске фильмов'))
+                      'при поиске фильмов повторяются имена режисеров'))
 
     def test_operator_like_has_correct_value(self):
         conditions = self.student_structure.get('условие')

@@ -31,7 +31,7 @@ class DirectorsTestCase(unittest.TestCase):
     def test_result_is_correct(self):
         self.assertEqual(
             self.student_func_output, self.author_func_output,
-            'Проверьте, правильно ли заданы параметры запроса')
+            'Проверьте, правильно ли выбраны параметры запроса')
 
     def test_output_begins_from_new_line(self):
         self.assertGreater(
