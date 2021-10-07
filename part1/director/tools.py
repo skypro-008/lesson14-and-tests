@@ -12,7 +12,7 @@ def task_preparing(limit=10):
             pre_query = cur.execute(pre_create_query)
             table = prettytable.from_db_cursor(pre_query)
             table.max_width = 30
-            print(table)
+            #print(table)
             query_limit = student_func()
             if query_limit[-1] == ';':
                 query_limit = query_limit[:-1]

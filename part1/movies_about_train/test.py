@@ -61,12 +61,12 @@ class TrainTestCase(unittest.TestCase):
     def test_rows_count_superfluous_condition(self):
         self.assertFalse(self.student_rows_numbers > self.author_rows_numbers,
             ('В запросе имеется лишнее условие.'
-             f'Выводится меньше строк ({self.student_rows_numbers}) чем предполагалось {self.author_rows_numbers}'))
+             f'Выводится больше строк ({self.student_rows_numbers}) чем предполагалось {self.author_rows_numbers}'))
 
     def test_rows_count_lack_condition(self):
         self.assertFalse(self.student_rows_numbers < self.author_rows_numbers,
             ('В запросе не хватает условия.'
-             f'Выводится больше строк ({self.student_rows_numbers}) чем предполагалось {self.author_rows_numbers}'))
+             f'Выводится меньше строк ({self.student_rows_numbers}) чем предполагалось {self.author_rows_numbers}'))
 
 
 if __name__ == "__main__":

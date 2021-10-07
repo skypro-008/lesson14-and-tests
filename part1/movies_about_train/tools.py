@@ -82,4 +82,3 @@ def get_key_words(query):
         if keyword in query:
             lst.append(keyword)
     return lst
-    
