@@ -15,7 +15,7 @@ class SkyproTestCase(StatMixin, unittest.TestCase):
         if len(result.failures) == 0:
             pass
         else:
-            error_ind = result.failures[x][-1].find('%@')
+            error_ind = result.failures[x][-1].find(r'%@')
             if error_ind != -1:
                 error_text = result.failures[x][-1][error_ind+2:]
                 testcase = result.failures[x][0]

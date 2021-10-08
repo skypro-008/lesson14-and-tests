@@ -3,7 +3,7 @@
 # и нам нужно прикинуть, сколько дней отпуска нужно взять,
 # чтобы совершить такой подвиг.
 # Посчитайте длительность всех фильмов 2010 года,
-# а результат выведите в полных часах
+# и выведите результат в полных часах
 #
 # Пример результата:
 #
@@ -30,8 +30,8 @@ import sqlite3
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
 sqlite_query = ("")  # TODO измените код запроса
-cur.execute(sqlite_query)
-executed_query = cur.fetchall()
+# cur.execute(sqlite_query)
+# executed_query = cur.fetchall()
 result = ""
 # TODO Результат запроса сохраните в переменной result
 # для последующей выдачи в требуемом формате

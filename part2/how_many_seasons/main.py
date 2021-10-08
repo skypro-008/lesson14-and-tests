@@ -5,7 +5,7 @@
 #
 # Пример результата:
 #
-# Длительность всех сериалов режисёра Alastair Fothergill составляет x сезона.
+# Длительность всех сериалов режисcера Alastair Fothergill составляет x сезона.
 #
 # Структура таблицы
 # -----------------------
@@ -28,8 +28,8 @@ import sqlite3
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
 sqlite_query = ("")  # TODO измените код запроса
-cur.execute(sqlite_query)
-executed_query = cur.fetchall()
+# cur.execute(sqlite_query)
+# executed_query = cur.fetchall()
 result = ""
 # TODO Результат запроса сохраните в переменной result
 # для последующей выдачи в требуемом формате

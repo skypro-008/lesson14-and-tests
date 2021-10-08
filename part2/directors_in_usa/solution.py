@@ -6,8 +6,7 @@ sqlite_query = ("SELECT director, COUNT(director) "
                 "FROM netflix "
                 "WHERE country LIKE '%United States%' "
                 "GROUP BY director "
-                "ORDER BY COUNT(director) DESC "
-                "LIMIT 15")  # TODO измените код запроса
+                "ORDER BY COUNT(director) DESC ")  # TODO измените код запроса
 result = ''
 cur.execute(sqlite_query)
 for row in cur.fetchall():

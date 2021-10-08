@@ -8,7 +8,7 @@ sqlite_query = ("select SUM(duration) "
                 "AND `type`='TV Show'")
 cur.execute(sqlite_query)
 seazons = cur.fetchall()[0][0]
-result = ('Длительность всех сериалов режисёра Alastair Fothergill'
+result = ('Длительность всех сериалов режиссера Alastair Fothergill'
           f' составляет {seazons} сезона.')
 con.close()
 

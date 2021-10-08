@@ -1,5 +1,4 @@
 import sqlite3
-import prettytable
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
@@ -7,9 +6,12 @@ sqlite_query = ("SELECT `title`, MAX(duration) "
                 "FROM netflix "
                 "WHERE release_year=2019 "
                 "AND type='Movie'")
-result = cur.execute(sqlite_query)
-mytable = prettytable.from_db_cursor(result)
-mytable.max_width = 30
+cur.execute(sqlite_query)
+result = cur.fetchall()
+movie_title = result[0][0]
+duration = result[0][1]
+result = (f'{movie_title} — {duration} минут')
+con.close()
 
 if __name__ == '__main__':
-    print(mytable)
+    print(result)

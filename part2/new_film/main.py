@@ -2,12 +2,7 @@
 # Давайте узнаем, какой фильм или сериал был добавлен в базу самым последним.
 #
 # Пример результата:
-#
-# +-----------------+------------+
-# |      title      | last_date  |
-# +-----------------+------------+
-# |      Movie      | 01.01.1900 |
-# +-----------------+------------+
+# 100 Meters — 10.03.2021
 #
 # Структура таблицы
 # -----------------------
@@ -26,19 +21,15 @@
 # description — краткое описание
 # -----------------------
 import sqlite3
-import prettytable
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
 sqlite_query = ("")  # TODO измените код запроса
-result = cur.execute(sqlite_query)
-
-# не удаляйте код дальше, он нужен для вывода результата
-# запроса в красивом формате
-
-mytable = prettytable.from_db_cursor(result)
-mytable.max_width = 30
-
+result = ""
+# cur.execute(sqlite_query)
+# executed_query = cur.fetchall()...
+# Результат запроса сохраните в переменной result
+# для последующей выдачи в требуемом формате
 
 if __name__ == '__main__':
-    print(mytable)
+    print(result)

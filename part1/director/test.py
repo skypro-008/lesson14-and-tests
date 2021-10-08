@@ -13,13 +13,7 @@ class DirectorsTestCase(SkyproTestCase):
         keywords = self.student_query.get('query_info').get('keywords')
         self.assertIn('distinct', keywords,
                       ('%@Проверьте, что в результате запроса'
-                       'не повторяются имена режисеров'))
-
-    def test_query_has_limit(self):
-        count = self.student_query.get('cursor_info').get('rows_count')
-        self.assertEqual(count, 10,
-                         '%@Проверьте, что ограничили запрос '
-                         'десятью значениями')
+                       'не повторяются имена режисcеров'))
 
     def test_query_columns_is_correct(self):
         student_columns = self.student_query.get('cursor_info').get('columns')
@@ -30,21 +24,21 @@ class DirectorsTestCase(SkyproTestCase):
                           f'Вы выбрали {student_columns}, тогда '
                           f'как необходимо {author_columns}'))
 
-    def test_query_result_havent_null_values(self):
-        student_result = self.student_query.get(
-            'cursor_info').get('query_result')
-        self.assertNotIn((None,), student_result,
-                         ('%@Проверьте, что исключили из выдачи '
-                          'значение None'))
+    def test_rows_count_superfluous_condition(self):
+        count = self.student_query.get('cursor_info').get('rows_count')
+        author_count = self.author_query.get('cursor_info').get('rows_count')
+        self.assertFalse(count > author_count,
+                         ('%@Кажется, в запросе имеется лишнее условие.'
+                          f'Выводится больше строк ({count}) '
+                          f'чем предполагалось {author_count}'))
 
-    def test_result_in_correct_order(self):
-        student_result = self.student_query.get(
-            'cursor_info').get('query_result')
-        author_result = self.author_query.get(
-            'cursor_info').get('query_result')
-        self.assertEqual(student_result, author_result,
-                         '%@Проверьте, что отсортировали результат запроса в '
-                         'алфавитном порядке')
+    def test_rows_count_lack_condition(self):
+        count = self.student_query.get('cursor_info').get('rows_count')
+        author_count = self.author_query.get('cursor_info').get('rows_count')
+        self.assertFalse(count < author_count,
+                         ('%@Кажется, в запросе нехватает условия.'
+                          f'Выводится меньше строк ({count}) '
+                          f'чем предполагалось {author_count}'))
 
 
 if __name__ == "__main__":
