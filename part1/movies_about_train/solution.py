@@ -6,7 +6,7 @@ cur = con.cursor()
 sqlite_query = ("SELECT `title` "
                 "FROM netflix "
                 "WHERE description LIKE '%train%' "
-                "AND type='Movie'")
+                "AND `type`='Movie'")
 result = cur.execute(sqlite_query)
 mytable = prettytable.from_db_cursor(result)
 mytable.max_width = 30
