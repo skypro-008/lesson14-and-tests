@@ -1,5 +1,4 @@
 import sqlite3
-import prettytable
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()

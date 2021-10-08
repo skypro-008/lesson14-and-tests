@@ -17,7 +17,8 @@ class LongTestCase(SkyproTestCase):
     def test_result_format_is_correct(self):
         self.assertRegex(
             main.result,
-            r'Чтобы\sпосмотреть\sвсе\sфильмы,\sнам\sнужно\s[0-9]*\sчасов.?\s*$',
+            r'Чтобы\sпосмотреть\sвсе\sфильмы'
+            r',\sнам\sнужно\s[0-9]*\sчасов.?\s*$',
             r'%@Проверьте, что используете правильный формат выдачи')
 
     def test_hours_value_is_correct(self):
