@@ -25,9 +25,9 @@ class TrainTestCase(SkyproTestCase):
     def test_tv_show_is_excluded(self):
         student_result = self.student_query.get(
             'cursor_info').get('query_result')
-        self.assertIn(('We Speak Dance',), student_result,
-                      ('%@Проверьте, что исключили из выдачи '
-                       'сериалы'))
+        self.assertNotIn(('The Letter for the King',), student_result,
+                         ('%@Проверьте, что исключили из выдачи '
+                          'сериалы'))
 
     def test_query_columns_is_correct(self):
         student_columns = self.student_query.get('cursor_info').get('columns')
@@ -49,7 +49,7 @@ class TrainTestCase(SkyproTestCase):
     def test_rows_count_lack_condition(self):
         count = self.student_query.get('cursor_info').get('rows_count')
         author_count = self.author_query.get('cursor_info').get('rows_count')
-        self.assertFalse(count > author_count,
+        self.assertFalse(count < author_count,
                          ('%@Кажется, в запросе нехватает условия.'
                           f'Выводится меньше строк ({count}) '
                           f'чем предполагалось {author_count}'))
