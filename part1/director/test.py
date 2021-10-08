@@ -1,88 +1,51 @@
 import unittest
-from unittest import result
-import sys
-from io import StringIO
-import main as student_solution
-import solution as author_solution
-from unittest.runner import TextTestResult, TextTestRunner
-student = student_solution
-author = author_solution
-
-class Capturing(list):
-    def __enter__(self):
-        self._stdout = sys.stdout
-        sys.stdout = self._stringio = StringIO()
-        return self
-
-    def __exit__(self, *args):
-        self.extend(self._stringio.getvalue().splitlines())
-        del self._stringio
-        sys.stdout = self._stdout
-
-
-class StatMixin:
-    def send_stat(self, result):
-        if result.wasSuccessful():
-            print("Тест пройден успешно!")
-
-
-class SkyproTestCase(StatMixin, unittest.TestCase):
-    def run(self, *args, **kwargs):
-        result = super().run(*args, **kwargs)
-        x = len(result.failures) - 1 
-        if len(result.failures) == 0:
-            pass
-        else:
-            error_ind = result.failures[x][-1].find('%@')
-            if error_ind != -1:
-                error_text = result.failures[x][-1][error_ind+2:]
-                testcase = result.failures[x][0]
-                new_error_output = (testcase, error_text)
-                result.failures[x] = new_error_output
-        self.send_stat(result)
+import main
+import solution
+from tools import SkyproTestCase
 
 
 class DirectorsTestCase(SkyproTestCase):
     def setUp(self):
-        with Capturing() as capt:
-            student_func = student.main()
-        with Capturing() as capt:
-            author_func = author.main()
-        self.student_structure = student_func.get('structure')
-        self.author_structure = author_func.get('structure')
-        self.student_rows_numbers = student_func.get('number_of_rows')
-        self.author_rows_numbers = author_func.get('number_of_rows')
-        self.student_result = student_func.get('query_result')
-        self.author_result = author_func.get('query_result')
-        self.student_keywords = student_func.get('keywords')
-        self.author_keywords = author_func.get('keywords')
+        self.student_query = self.get_query_info(main.sqlite_query)
+        self.author_query = self.get_query_info(solution.sqlite_query)
 
     def test_query_structure_has_distinct_method(self):
-        self.assertIn('distinct', self.student_keywords,
-                     ('%@Проверьте, что в результате запроса'
-                      'не повторяются имена режисеров'))
+        keywords = self.student_query.get('query_info').get('keywords')
+        self.assertIn('distinct', keywords,
+                      ('%@Проверьте, что в результате запроса'
+                       'не повторяются имена режисеров'))
 
-    def test_query_has_correct_column(self):
-        student_column = self.student_structure.get('колонка')
-        author_column = self.author_structure.get('колонка')
-        self.assertEqual(student_column, author_column,
-            ('%@Проверьте, что правильно указали колонку в запросе.'
-             f'Вы указали {student_column}, тогда как должна быть указана: {author_column}'))
+    def test_query_has_limit(self):
+        count = self.student_query.get('cursor_info').get('rows_count')
+        self.assertEqual(count, 10,
+                         '%@Проверьте, что ограничили запрос '
+                         'десятью значениями')
 
-    def test_rows_count_superfluous_condition(self):
-        self.assertFalse(self.student_rows_numbers > self.author_rows_numbers,
-            ('%@В запросе имеется лишнее условие.'
-             f'Выводится меньше строк ({self.student_rows_numbers}) чем предполагалось {self.author_rows_numbers}'))
+    def test_query_columns_is_correct(self):
+        student_columns = self.student_query.get('cursor_info').get('columns')
+        author_columns = self.author_query.get('cursor_info').get('columns')
+        self.assertEqual(student_columns, author_columns,
+                         ('%@Проверьте, что правильно выбрали'
+                          ' колонку в базе данных. '
+                          f'Вы выбрали {student_columns}, тогда '
+                          f'как необходимо {author_columns}'))
 
-    def test_rows_count_lack_condition(self):
-        self.assertFalse(self.student_rows_numbers < self.author_rows_numbers,
-            ('%@В запросе не хватает условия.'
-             f'Выводится больше строк ({self.student_rows_numbers}) чем предполагалось {self.author_rows_numbers}'))
+    def test_query_result_havent_null_values(self):
+        student_result = self.student_query.get(
+            'cursor_info').get('query_result')
+        self.assertNotIn((None,), student_result,
+                         ('%@Проверьте, что исключили из выдачи '
+                          'значение None'))
 
-
+    def test_result_in_correct_order(self):
+        student_result = self.student_query.get(
+            'cursor_info').get('query_result')
+        author_result = self.author_query.get(
+            'cursor_info').get('query_result')
+        self.assertEqual(student_result, author_result,
+                         '%@Проверьте, что отсортировали результат запроса в '
+                         'алфавитном порядке')
 
 
 if __name__ == "__main__":
     unittest.main()
-
-
