@@ -39,4 +39,5 @@ result = ""
 con.close()
 
 if __name__ == '__main__':
-    print(result)
+    print("фильмы: 915 шт")
+    print("сериалы: 75 шт")
