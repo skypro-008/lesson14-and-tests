@@ -11,7 +11,6 @@ result = cur.fetchall()
 movie_title = result[0][0]
 duration = result[0][1]
 result = (f'{movie_title} — {duration} минут')
-con.close()
 
 if __name__ == '__main__':
     print(result)

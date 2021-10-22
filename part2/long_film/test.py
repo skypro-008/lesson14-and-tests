@@ -15,7 +15,7 @@ class YearsTestCase(SkyproTestCase):
     def test_result_format_is_correct(self):
         self.assertRegex(
             main.result,
-            r'(\w+)*\s[\-—]\s[0-9]*\sминут',
+            r'(\w+)*\s[-—]\s[0-9]*\sминут',
             r'%@Проверьте, что используете правильный формат выдачи')
 
     def test_query_exists_year_condition(self):

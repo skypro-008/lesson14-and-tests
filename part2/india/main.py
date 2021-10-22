@@ -29,15 +29,16 @@ import sqlite3
 
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
-sqlite_query = ("")  # TODO измените код запроса
-# Результат запроса сохраните в переменной result
+sqlite_query = ("")  # TODO измените код
+cur.execute(sqlite_query)
+executed_query = cur.fetchall()
+
+# TODO Результат запроса сохраните в переменной result
 # для последующей выдачи в требуемом формате
-# cur.execute(sqlite_query)
-# executed_query = cur.fetchall...
+
 result = ""
 
 con.close()
 
 if __name__ == '__main__':
-    print("фильмы: 915 шт")
-    print("сериалы: 75 шт")
+    print(result)

@@ -27,11 +27,13 @@ import sqlite3
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
 sqlite_query = ("")  # TODO измените код запроса
-result = ""
-# cur.execute(sqlite_query)
-# executed_query = cur.fetchall()...
-# Результат запроса сохраните в переменной result
+cur.execute(sqlite_query)
+executed_query = cur.fetchall()
+
+# TODO Результат запроса сохраните в переменной result
 # для последующей выдачи в требуемом формате
+
+result = ""
 
 if __name__ == '__main__':
     print(result)
