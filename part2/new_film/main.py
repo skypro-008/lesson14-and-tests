@@ -2,7 +2,7 @@
 # Давайте узнаем, какой фильм или сериал был добавлен в базу самым последним.
 #
 # Пример результата:
-# 100 Meters — 10.03.2021
+# 100 Meters
 #
 # Структура таблицы
 # -----------------------
@@ -25,11 +25,13 @@ import sqlite3
 con = sqlite3.connect("../netflix.db")
 cur = con.cursor()
 sqlite_query = ("")  # TODO измените код запроса
-result = ""
-# cur.execute(sqlite_query)
-# executed_query = cur.fetchall()...
-# Результат запроса сохраните в переменной result
+cur.execute(sqlite_query)
+executed_query = cur.fetchall()
+
+# TODO Результат запроса сохраните в переменной result
 # для последующей выдачи в требуемом формате
+
+result = ""
 
 if __name__ == '__main__':
     print(result)

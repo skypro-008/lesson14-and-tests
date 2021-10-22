@@ -12,23 +12,9 @@ class YearsTestCase(SkyproTestCase):
             hasattr(main, 'result'),
             r'%@Проверьте, что переменная result существует')
 
-    def test_result_format_is_correct(self):
-        self.assertRegex(
-            main.result,
-            r'[\w+*\s]*[\-—]\s[0-9\.]*[.]*$',
-            r'%@Проверьте, что используете правильный формат выдачи')
-
-    def test_query_exists_year_condition(self):
-        value = re.findall(r"\d+", main.result)
-        author_value = re.findall(r"\d+", solution.result)
-        self.assertEqual(
-            value, author_value,
-            (r'%@Проверьте, на самом ли деле указана '
-             'верная дата добавления фильма.'))
-
     def test_film_name_is_correct(self):
-        value = re.findall(r"[\w+\s]*", main.result)[0]
-        author_value = re.findall(r"[\w+\s]*", solution.result)[0]
+        value = re.findall(r"[\w+]*", main.result)[0]
+        author_value = re.findall(r"[\w+]*", solution.result)[0]
         self.assertEqual(
             value, author_value,
             (r'%@Проверьте, на самом ли деле название '
