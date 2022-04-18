@@ -57,6 +57,8 @@ Pycharm может предложить вам сделать это после 
 - part2/india
 - part2/long_film
 - part2/new_film
+- part2/country_count
+- part2/directors_count
 
 Задачи описаны в комментариях в файле main.py
 Вам будет необходимо составить запросы на SQL
