@@ -48,6 +48,8 @@ Pycharm может предложить вам сделать это после 
 - part1/old_new
 - part1/where_plays
 - part1/where_plays_2
+- part1/alias_1
+- part1/alias_2
 
 #### Часть 2:
 - part2/full_long
