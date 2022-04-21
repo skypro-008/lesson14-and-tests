@@ -48,6 +48,8 @@ Pycharm может предложить вам сделать это после 
 - part1/old_new
 - part1/where_plays
 - part1/where_plays_2
+- part1/alias_1
+- part1/alias_2
 
 #### Часть 2:
 - part2/full_long
@@ -55,6 +57,8 @@ Pycharm может предложить вам сделать это после 
 - part2/india
 - part2/long_film
 - part2/new_film
+- part2/country_count
+- part2/directors_count
 
 Задачи описаны в комментариях в файле main.py
 Вам будет необходимо составить запросы на SQL
